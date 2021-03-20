@@ -20,6 +20,26 @@
 #include <list>
 using namespace std;
 
+int keta(int keta_num, vector<int> test)
+{
+    bool dec = false;
+    int i = 0;
+    int keta;
+    while (dec == false || i == 10)
+    {
+        if (keta_num <= test[i])
+        {
+            keta = test[i];
+            dec = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return keta;
+}
+
 int main()
 {
     int N, K;
@@ -61,22 +81,21 @@ int main()
 
     d = N;
 
-    int keta1000, keta100, keta10, keta1;
+    int keta1000 = 0, keta100 = 0, keta10 = 0, keta1 = 0;
 
-    bool dec = false;
-    int i = 0;
-    while (dec == false)
-    {
-        if (a <= test1[i])
-        {
-            keta1000 = test1[i];
-            dec = true;
-        }
-        else
-        {
-            i++;
-        }
-    }
+    keta1000 = keta(a, test1);
 
+    keta100 = keta(b, test1);
+
+    keta10 = keta(c, test1);
+
+    keta1 = keta(d, test1);
+
+    int ans;
+    ans = 1000 * keta1000 + 100 * keta100 + 10 * keta10 + keta1;
+
+    cout << ans << endl;
+
+    /*0の処理がだめ*/
     return 0;
 }
