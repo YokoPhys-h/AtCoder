@@ -80,6 +80,8 @@ int main()
     long long int digit = GetDigit(N);
     vector<long long int> f(digit, 0);
     vector<long long int> s(digit, 0);
+    vector<long long int> f2;
+    vector<long long int> s2;
 
     for (long long int i = 0; i < digit; i++)
     {
@@ -87,13 +89,32 @@ int main()
         s[i] = f[i];
     }
     reverse(s.begin(), s.end());
+    int number = 0;
+    for (long long unsigned int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == 0)
+        {
+            number++;
+        }
+        else
+        {
+            break;
+        }
+    }
 
-    vector<long long int> f2(digit, 0);
-    vector<long long int> s2(digit, 0);
-    vector<long long int> re = {0};
-
-    f2 = vector_remove(f, re);
-    s2 = vector_remove(s, re);
+    for (long long unsigned int i = 0; i < number + f.size(); i++)
+    {
+        if (i < number)
+        {
+            s2[i] = 0;
+        }
+        else
+        {
+            s2[i] = s[i - number];
+        }
+        f2[i] = s2[i];
+    }
+    reverse(f2.begin(), f2.end());
 
     long long unsigned int cnt = 0;
 
@@ -112,6 +133,5 @@ int main()
     {
         cout << "No" << endl;
     }
-
     return 0;
 }
